@@ -22,6 +22,16 @@ public:
 		std::cout << this << " String created w/ m_Data " << m_Data << "!" << std::endl;
 	}
 
+	/* need to provide copy constructor for two reasons
+	1. With move constructor, compiler reverts to move constructor since defined
+	but invalid since ie. line 122 requires copy constructor. Compiler doesn't
+	implicitly generate a copy constructor because move constructor is provided.
+	2. Even without move constructor, implicit copy constructor allocates m_Data
+	on the stack, so in destruction, m_Data/m_Size are torn down from the stack and
+	then trying to call "delete m_Data" in the destructor doesn't work since it was
+	on the stack. The copy constructor puts the m_Data on the heap to be able
+	to use "delete m_Data".
+	*/
 	String(const String& string)
 	{
 		m_Size = string.m_Size;
@@ -109,6 +119,7 @@ int main() {
 
 	String string("hello world");
 	Entity entity(std::move(string));
+	// Entity entity(string);
 	string.Print();
 
 	std::cout << std::endl;
