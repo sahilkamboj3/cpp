@@ -6,7 +6,8 @@ can occur separately instantaneously (there is no dependency).
 
 ie. concurrency example - multiple readers, 1 writer
 
-mutex - mutual exclusion (only one thread has access to object)
+mutex - mutual exclusion (only one thread has access to object). Threads can
+eat up cycles constantly polling to see if the mutex is unlocked and available
 
 deadlock - thread doesn't return lock or tell other threads the lock has been
 released so other threads are stuck waiting since they don't know/can't lock
