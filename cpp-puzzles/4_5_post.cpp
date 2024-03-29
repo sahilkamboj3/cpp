@@ -61,7 +61,7 @@
  * std::vector<Base*> to std::vector<Derived*> gives errors if no Base(Derived*)
  * is given
  * 
- * Reference Items 8-17 for writing exception-safe code
+ * Reference Items 8-17 for writing exception-safe code (ie. swapping safely, etc)
  *
  */
 
