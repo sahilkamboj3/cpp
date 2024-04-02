@@ -1,0 +1,21 @@
+1. The exception-safe guarantees are that within a class, be it a container class
+or something else, if there is an error thrown, the internal state of the class
+is not changed. Meaning if there is an error in constructing, modifying, or even
+in some cases, reading the state of the object, the state of the object is still
+unmodified and safe even though the exception was thrown. The state remains unchanged.
+This goes hand-in-hand with being exception-neutral where all the exceptions that
+are thrown for caller functions are propagated upwards towards the caller to handle,
+hence the class or function itself isn't specifically throwing an error, but the
+helper functions/logic could and that is propagated upwards. This is the strong
+guarantee because this could imply rolling back changes if needed. This also means
+that any iterators or such won't be invalidated since the underlying state is still
+unchanged. Ideally, the classes and functions don't throw though.
+
+The weak guarantee is that the object won't leak resources.
+
+2. 
+- default constructor
+- copy constructor
+- no-throw destructor for exception-safety
+- exception-safe copy assignment (since when assigning, if error is thrown,
+the original object needed to remain unchanged (exception-safe)
